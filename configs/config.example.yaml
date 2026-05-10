@@ -1,0 +1,60 @@
+server:
+  host: "0.0.0.0"
+  port: 8080
+  mode: "debug"            # debug | release
+  read_timeout: 10s
+  write_timeout: 30s
+  shutdown_timeout: 10s
+
+mysql:
+  host: "127.0.0.1"
+  port: 3306
+  user: "root"
+  password: "replace_with_mysql_password"
+  database: "nexpay"
+  charset: "utf8mb4"
+  parse_time: true
+  loc: "Local"
+  max_open_conns: 100
+  max_idle_conns: 10
+  conn_max_lifetime: 1h
+
+log:
+  level: "info"            # debug | info | warn | error
+  encoding: "console"      # console | json
+  output_paths: ["stdout"]
+  file_path: "./logs/nexpay.log"
+  max_size_mb: 100
+  max_backups: 7
+  max_age_days: 30
+  compress: true
+
+auth:
+  enabled: false
+  header: "X-API-Key"
+  api_keys:
+    - "replace_with_strong_api_key"
+
+# 通知回调时，第三方支付平台需要能访问到的公网地址前缀
+notify:
+  base_url: "https://your-domain.com"
+
+wechat:
+  enabled: true
+  app_id: "your_wechat_app_id"
+  mch_id: "your_wechat_mchid"
+  serial_no: "your_wechat_certificate_serial_no"
+  api_v3_key: "your_32_bytes_api_v3_key"
+  private_key_path: "./cert/apiclient_key.pem"
+  notify_path: "/api/v1/notify/wechat"
+  refund_notify_path: "/api/v1/notify/wechat/refund"
+
+alipay:
+  enabled: false
+  app_id: "your_alipay_app_id"
+  private_key: "your_app_private_key_pkcs1_or_pkcs8"
+  ali_public_key: "your_alipay_public_key"
+  is_production: false
+  notify_path: "/api/v1/notify/alipay"
+  refund_notify_path: "/api/v1/notify/alipay/refund"
+  return_url: "https://your-domain.com/return/alipay"

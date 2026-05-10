@@ -1,0 +1,12 @@
+bin/
+*.test
+*.out
+.DS_Store
+.idea/
+.vscode/
+*.log
+logs/
+vendor/
+configs/config.yaml
+.env
+.env.*
